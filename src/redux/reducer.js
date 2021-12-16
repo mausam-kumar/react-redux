@@ -1,11 +1,12 @@
-import { INCREMENT, DECREMENT, ADD_TODO } from "./actionType.js";
+import { INCREMENT, DECREMENT, ADD_TODO ,INCREMENT_COUNT,DECREMENT_COUNT,MULTIPLY,DIVIDE} from "./actionType.js";
 
 const initState = {
     count:0
 }
 
 const todoState = {
-    todos:[]
+    todos:[],
+    defaultCount:0
 }
 
 export const reducer = (state=initState, action) => {
@@ -29,9 +30,36 @@ export const secondReducer = (state=todoState, {type,payload}) =>{
     
       case ADD_TODO:{
         return {
+          ...state,
           todos:[...state.todos,payload]
         }
       }
+      case INCREMENT_COUNT:{
+        return {
+          ...state,
+          defaultCount:state.defaultCount+ payload
+        }
+          
+        
+      }
+      case DECREMENT_COUNT:{
+        return{
+          ...state,
+          defaultCount : state.defaultCount - payload
+        }
+      }
+      case MULTIPLY:{
+        return{
+          ...state,
+          defaultCount : state.defaultCount * payload
+        }
+      } 
+      case DIVIDE:{
+        return{
+          ...state,
+          defaultCount : Math.floor(state.defaultCount / payload)
+        }
+      } 
       default:
         return state
     }
