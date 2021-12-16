@@ -1,10 +1,14 @@
-import { INCREMENT, DECREMENT } from "./actionType.js";
+import { INCREMENT, DECREMENT, ADD_TODO } from "./actionType.js";
 
 const initState = {
     count:0
 }
 
-export default (state=initState, action) => {
+const todoState = {
+    todos:[]
+}
+
+export const reducer = (state=initState, action) => {
   switch (action.type) {
     case INCREMENT:
       return {
@@ -19,3 +23,16 @@ export default (state=initState, action) => {
       break;
   }
 };
+
+export const secondReducer = (state=todoState, {type,payload}) =>{
+    switch (type) {
+    
+      case ADD_TODO:{
+        return {
+          todos:[...state.todos,payload]
+        }
+      }
+      default:
+        return state
+    }
+}

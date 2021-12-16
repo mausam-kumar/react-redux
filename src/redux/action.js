@@ -1,4 +1,4 @@
-import { INCREMENT,DECREMENT } from "./actionType.js";
+import { INCREMENT,DECREMENT,ADD_TODO } from "./actionType.js";
 
 export const incrementFn = (payload) => {
     return{
@@ -11,5 +11,12 @@ export const decrementFn = (payload) => {
     return{
         type: DECREMENT,
         payload: payload
+    }
+}
+
+export const addTodo = (payload) => {
+    return{
+        type: ADD_TODO,
+        payload
     }
 }
